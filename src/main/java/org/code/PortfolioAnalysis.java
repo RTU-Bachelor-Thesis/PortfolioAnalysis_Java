@@ -16,7 +16,6 @@ public class PortfolioAnalysis {
     out.println("\nProfitability portfolio 1");
     printMatrix(profitabilityPortfolio1);
 
-
     double[][] transposedMatrix = transposeMatrix(profitabilityPortfolio1);
     out.println("\nTransposed portfolio");
     printMatrix(transposedMatrix);
@@ -29,16 +28,13 @@ public class PortfolioAnalysis {
     out.println("\nChange in return on assets");
     printMatrix(matrixOfChange);
 
-
     profitabilityPortfolio2 = generateMatrix(assetsCount, periodsCount, -10.0, 10.0);
     out.println("\nProfitability portfolio 2");
     printMatrix(profitabilityPortfolio2);
 
-
     double[][] summarisedReturn = sumMatrices(profitabilityPortfolio1, profitabilityPortfolio2);
     out.println("\nTotal profitability of 2 portfolios");
     printMatrix(summarisedReturn);
-
 
     weightMatrix = generateWeightMatrix(assetsCount, periodsCount);
     out.println("\nWeight matrix");
