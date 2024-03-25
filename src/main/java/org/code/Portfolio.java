@@ -9,82 +9,76 @@ public class Portfolio {
   private double[][] data;
 
   public Portfolio(int rows, int columns) {
-    data = new double[rows][columns];
+    this.data = new double[rows][columns];
+  }
+
+  public Portfolio(double[][] data) {
+    this.data = data;
+  }
+
+  public Portfolio deepCopy() {
+    double[][] copyData = new double[this.data.length][];
+    for (int i = 0; i < this.data.length; i++) {
+      copyData[i] = this.data[i].clone();
+    }
+    return new Portfolio(copyData);
   }
 
   public void fillRandom(double min, double max) {
     Random random = new Random();
-    for (int i = 0; i < data.length; i++) {
-      for (int j = 0; j < data[i].length; j++) {
-        data[i][j] = random.nextDouble() * (max - min) + min;
+    for (int i = 0; i < this.data.length; i++) {
+      for (int j = 0; j < this.data[i].length; j++) {
+        this.data[i][j] = random.nextDouble() * (max - min) + min;
       }
     }
   }
 
-  public Portfolio transpose() {
-    Portfolio result = new Portfolio(data[0].length, data.length);
-    for (int i = 0; i < data.length; i++) {
-      for (int j = 0; j < data[i].length; j++) {
-        result.data[j][i] = this.data[i][j];
+  public void transpose() {
+    double[][] transposedData = new double[this.data[0].length][this.data.length];
+    for (int i = 0; i < this.data.length; i++) {
+      for (int j = 0; j < this.data[i].length; j++) {
+        transposedData[j][i] = this.data[i][j];
       }
     }
-    return result;
+    this.data = transposedData;
   }
 
-  public Portfolio scale(double coefficient) {
-    Portfolio result = new Portfolio(data.length, data[0].length);
-    for (int i = 0; i < data.length; i++) {
-      for (int j = 0; j < data[i].length; j++) {
-        result.data[i][j] = this.data[i][j] * coefficient;
+  public void scale(double coefficient) {
+    for (int i = 0; i < this.data.length; i++) {
+      for (int j = 0; j < this.data[i].length; j++) {
+        this.data[i][j] *= coefficient;
       }
     }
-    return result;
   }
 
-  public Portfolio calculateReturnsChange() {
-    Portfolio change = new Portfolio(data.length, data[0].length - 1);
-    for (int i = 0; i < data.length; i++) {
-      for (int j = 0; j < data[i].length - 1; j++) {
-        change.data[i][j] = data[i][j + 1] - data[i][j];
+  public void calculateReturnChange() {
+    double[][] changeData = new double[this.data.length][this.data[0].length - 1];
+    for (int i = 0; i < this.data.length; i++) {
+      for (int j = 0; j < this.data[i].length - 1; j++) {
+        changeData[i][j] = this.data[i][j + 1] - this.data[i][j];
       }
     }
-    return change;
+    this.data = changeData;
   }
 
-  public static Portfolio combine(Portfolio portfolio1, Portfolio portfolio2) {
-    Portfolio sum = new Portfolio(portfolio1.data.length, portfolio1.data[0].length);
-    for (int i = 0; i < sum.data.length; i++) {
-      for (int j = 0; j < sum.data[i].length; j++) {
-        sum.data[i][j] = portfolio1.data[i][j] + portfolio2.data[i][j];
+  public void combine(Portfolio other) {
+    if (this.data.length != other.data.length || this.data[0].length != other.data[0].length) {
+      throw new IllegalArgumentException("Dimensions of portfolios do not match");
+    }
+
+    for (int i = 0; i < this.data.length; i++) {
+      for (int j = 0; j < this.data[i].length; j++) {
+        this.data[i][j] += other.data[i][j];
       }
     }
-    return sum;
   }
 
-  public static Portfolio createWeightsDistribution(int assets, int periods) {
-    Portfolio weights = new Portfolio(periods, assets);
-    Random random = new Random();
-    for (int j = 0; j < periods; j++) {
-      double sum = 0;
-      for (int i = 0; i < assets; i++) {
-        weights.data[j][i] = random.nextDouble();
-        sum += weights.data[j][i];
-      }
-      for (int i = 0; i < assets; i++) {
-        weights.data[j][i] /= sum;
+  public void applyWeights(Portfolio weights) {
+    for (int i = 0; i < this.data.length; i++) {
+      for (int j = 0; j < this.data[i].length; j++) {
+        this.data[i][j] *= weights.data[i][j];
       }
     }
-    return weights.transpose();
-  }
-
-  public Portfolio applyWeights(Portfolio weights) {
-    Portfolio result = new Portfolio(data.length, data[0].length);
-    for (int i = 0; i < result.data.length; i++) {
-      for (int j = 0; j < result.data[i].length; j++) {
-        result.data[i][j] = data[i][j] * weights.data[i][j];
-      }
-    }
-    return result;
   }
 
   public ArrayList<Integer> findAssetsWithinReturnRange(int period, double min, double max) {
@@ -109,6 +103,23 @@ public class Portfolio {
       }
     }
     return maxSum;
+  }
+
+  public static Portfolio createWeightsDistribution(int assets, int periods) {
+    Portfolio weights = new Portfolio(periods, assets);
+    Random random = new Random();
+    for (int j = 0; j < periods; j++) {
+      double sum = 0;
+      for (int i = 0; i < assets; i++) {
+        weights.data[j][i] = random.nextDouble();
+        sum += weights.data[j][i];
+      }
+      for (int i = 0; i < assets; i++) {
+        weights.data[j][i] /= sum;
+      }
+    }
+    weights.transpose();
+    return weights;
   }
 
   public void print() {

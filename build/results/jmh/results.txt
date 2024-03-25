@@ -1,25 +1,25 @@
-Benchmark                                                (assetsCount)  Mode  Cnt   Score    Error  Units
-PortfolioBenchmark.benchmarkApplyWeights                            10  avgt    5  ≈ 10⁻⁶            s/op
-PortfolioBenchmark.benchmarkApplyWeights                           100  avgt    5  ≈ 10⁻⁵            s/op
-PortfolioBenchmark.benchmarkApplyWeights                          1000  avgt    5  ≈ 10⁻⁴            s/op
-PortfolioBenchmark.benchmarkCalculateReturnsChange                  10  avgt    5  ≈ 10⁻⁶            s/op
-PortfolioBenchmark.benchmarkCalculateReturnsChange                 100  avgt    5  ≈ 10⁻⁵            s/op
-PortfolioBenchmark.benchmarkCalculateReturnsChange                1000  avgt    5  ≈ 10⁻⁴            s/op
-PortfolioBenchmark.benchmarkCombine                                 10  avgt    5  ≈ 10⁻⁶            s/op
-PortfolioBenchmark.benchmarkCombine                                100  avgt    5  ≈ 10⁻⁵            s/op
-PortfolioBenchmark.benchmarkCombine                               1000  avgt    5  ≈ 10⁻⁴            s/op
-PortfolioBenchmark.benchmarkFillRandom                              10  avgt    5  ≈ 10⁻⁶            s/op
-PortfolioBenchmark.benchmarkFillRandom                             100  avgt    5  ≈ 10⁻⁵            s/op
-PortfolioBenchmark.benchmarkFillRandom                            1000  avgt    5  ≈ 10⁻⁴            s/op
-PortfolioBenchmark.benchmarkFindAssetsWithinReturnRange             10  avgt    5  ≈ 10⁻⁸            s/op
-PortfolioBenchmark.benchmarkFindAssetsWithinReturnRange            100  avgt    5  ≈ 10⁻⁷            s/op
-PortfolioBenchmark.benchmarkFindAssetsWithinReturnRange           1000  avgt    5  ≈ 10⁻⁶            s/op
-PortfolioBenchmark.benchmarkFindMaxTotalReturn                      10  avgt    5  ≈ 10⁻⁷            s/op
-PortfolioBenchmark.benchmarkFindMaxTotalReturn                     100  avgt    5  ≈ 10⁻⁶            s/op
-PortfolioBenchmark.benchmarkFindMaxTotalReturn                    1000  avgt    5  ≈ 10⁻⁵            s/op
-PortfolioBenchmark.benchmarkScale                                   10  avgt    5  ≈ 10⁻⁶            s/op
-PortfolioBenchmark.benchmarkScale                                  100  avgt    5  ≈ 10⁻⁵            s/op
-PortfolioBenchmark.benchmarkScale                                 1000  avgt    5  ≈ 10⁻⁴            s/op
-PortfolioBenchmark.benchmarkTranspose                               10  avgt    5  ≈ 10⁻⁶            s/op
-PortfolioBenchmark.benchmarkTranspose                              100  avgt    5  ≈ 10⁻⁶            s/op
-PortfolioBenchmark.benchmarkTranspose                             1000  avgt    5  ≈ 10⁻⁵            s/op
+Benchmark                                                (assetsCount)  Mode  Cnt       Score       Error  Units
+PortfolioBenchmark.benchmarkApplyWeights                            10  avgt    5     238,563 ±    17,188  ns/op
+PortfolioBenchmark.benchmarkApplyWeights                           100  avgt    5    2425,478 ±   302,158  ns/op
+PortfolioBenchmark.benchmarkApplyWeights                          1000  avgt    5   26451,557 ±  4024,520  ns/op
+PortfolioBenchmark.benchmarkCalculateReturnChange                   10  avgt    5     558,767 ±    28,738  ns/op
+PortfolioBenchmark.benchmarkCalculateReturnChange                  100  avgt    5    5406,744 ±   775,151  ns/op
+PortfolioBenchmark.benchmarkCalculateReturnChange                 1000  avgt    5   62594,972 ± 23484,450  ns/op
+PortfolioBenchmark.benchmarkCombine                                 10  avgt    5     258,131 ±    64,215  ns/op
+PortfolioBenchmark.benchmarkCombine                                100  avgt    5    2579,318 ±   932,118  ns/op
+PortfolioBenchmark.benchmarkCombine                               1000  avgt    5   27861,262 ±  4572,059  ns/op
+PortfolioBenchmark.benchmarkFillRandom                              10  avgt    5    2133,794 ±   155,358  ns/op
+PortfolioBenchmark.benchmarkFillRandom                             100  avgt    5   20493,820 ±   595,182  ns/op
+PortfolioBenchmark.benchmarkFillRandom                            1000  avgt    5  204220,618 ±  3438,986  ns/op
+PortfolioBenchmark.benchmarkFindAssetsWithinReturnRange             10  avgt    5      19,933 ±    20,837  ns/op
+PortfolioBenchmark.benchmarkFindAssetsWithinReturnRange            100  avgt    5     175,384 ±    58,301  ns/op
+PortfolioBenchmark.benchmarkFindAssetsWithinReturnRange           1000  avgt    5    2792,796 ±   510,310  ns/op
+PortfolioBenchmark.benchmarkFindMaxTotalReturn                      10  avgt    5      54,094 ±     2,785  ns/op
+PortfolioBenchmark.benchmarkFindMaxTotalReturn                     100  avgt    5     562,765 ±    43,527  ns/op
+PortfolioBenchmark.benchmarkFindMaxTotalReturn                    1000  avgt    5    5442,840 ±   235,860  ns/op
+PortfolioBenchmark.benchmarkScale                                   10  avgt    5     223,865 ±     5,450  ns/op
+PortfolioBenchmark.benchmarkScale                                  100  avgt    5    2053,401 ±    39,757  ns/op
+PortfolioBenchmark.benchmarkScale                                 1000  avgt    5   22778,034 ±  1270,426  ns/op
+PortfolioBenchmark.benchmarkTranspose                               10  avgt    5     600,733 ±     4,632  ns/op
+PortfolioBenchmark.benchmarkTranspose                              100  avgt    5    3455,740 ±    90,948  ns/op
+PortfolioBenchmark.benchmarkTranspose                             1000  avgt    5   39562,178 ±  6027,706  ns/op

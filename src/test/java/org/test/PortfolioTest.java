@@ -7,11 +7,11 @@ import static java.lang.System.*;
 import org.junit.jupiter.api.*;
 
 class PortfolioTest {
-  Portfolio portfolio1, portfolio2, weightMatrix;
+  Portfolio originalPortfolio, portfolio2, weightMatrix;
 
   public PortfolioTest() {
-    portfolio1 = new Portfolio(100, 12);
-    portfolio1.fillRandom(-10.0, 10.0);
+    originalPortfolio = new Portfolio(100, 12);
+    originalPortfolio.fillRandom(-10.0, 10.0);
 
     portfolio2 = new Portfolio(100, 12);
     portfolio2.fillRandom(-10.0, 10.0);
@@ -20,57 +20,62 @@ class PortfolioTest {
   }
 
   @Test
-  void fillPortfolioRandom() {
+  void fillRandom() {
     long startTime = System.nanoTime();
-    portfolio1.fillRandom(-10.0, 10.0);
+    originalPortfolio.fillRandom(-10.0, 10.0);
     long endTime = System.nanoTime();
-    out.println("Time of execution of the fillPortfolioRandom() method: " + (endTime - startTime) + " ns");
+    out.println("Time of execution of the fillRandom() method: " + (endTime - startTime) + " ns");
   }
 
   @Test
-  void transposePortfolio() {
+  void transpose() {
     long startTime = System.nanoTime();
-    portfolio1.transpose();
+    Portfolio originalPortfolioCopy = originalPortfolio.deepCopy();
+    originalPortfolioCopy.transpose();
     long endTime = System.nanoTime();
-    out.println("Time of execution of the transposePortfolio() method: " + (endTime - startTime) + " ns");
+    out.println("Time of execution of the transpose() method: " + (endTime - startTime) + " ns");
   }
 
   @Test
-  void scaleMatrix() {
+  void scale() {
     long startTime = System.nanoTime();
-    portfolio1.scale(Math.PI);
+    Portfolio originalPortfolioCopy = originalPortfolio.deepCopy();
+    originalPortfolioCopy.scale(Math.PI);
     long endTime = System.nanoTime();
     out.println("Time of execution of the scale() method: " + (endTime - startTime) + " ns");
   }
 
   @Test
-  void calculateReturnsChange() {
+  void calculateReturnChange() {
     long startTime = System.nanoTime();
-    portfolio1.calculateReturnsChange();
+    Portfolio originalPortfolioCopy = originalPortfolio.deepCopy();
+    originalPortfolioCopy.calculateReturnChange();
     long endTime = System.nanoTime();
-    out.println("Time of execution of the calculateReturnsChange() method: " + (endTime - startTime) + " ns");
+    out.println("Time of execution of the calculateReturnChange() method: " + (endTime - startTime) + " ns");
   }
 
   @Test
-  void combinePortfolios() {
+  void combine() {
     long startTime = System.nanoTime();
-    Portfolio.combine(portfolio1, portfolio2);
+    Portfolio originalPortfolioCopy = originalPortfolio.deepCopy();
+    originalPortfolioCopy.combine(portfolio2);
     long endTime = System.nanoTime();
-    out.println("Time of execution of the combinePortfolios() method: " + (endTime - startTime) + " ns");
+    out.println("Time of execution of the combine() method: " + (endTime - startTime) + " ns");
   }
 
   @Test
-  void applyWeightsToPortfolio() {
+  void applyWeights() {
     long startTime = System.nanoTime();
-    portfolio1.applyWeights(weightMatrix);
+    Portfolio originalPortfolioCopy = originalPortfolio.deepCopy();
+    originalPortfolioCopy.applyWeights(weightMatrix);
     long endTime = System.nanoTime();
-    out.println("Time of execution of the applyWeightsToPortfolio() method: " + (endTime - startTime) + " ns");
+    out.println("Time of execution of the applyWeights() method: " + (endTime - startTime) + " ns");
   }
 
   @Test
   void findAssetsWithinReturnRange() {
     long startTime = System.nanoTime();
-    portfolio1.findAssetsWithinReturnRange(5, 2, 5);
+    originalPortfolio.findAssetsWithinReturnRange(5, 2, 5);
     long endTime = System.nanoTime();
     out.println("Time of execution of the findAssetsWithinReturnRange() method: " + (endTime - startTime) + " ns");
   }
@@ -78,7 +83,7 @@ class PortfolioTest {
   @Test
   void findMaxTotalReturn() {
     long startTime = System.nanoTime();
-    portfolio1.findMaxTotalReturn();
+    originalPortfolio.findMaxTotalReturn();
     long endTime = System.nanoTime();
     out.println("Time of execution of the findMaxTotalReturn() method: " + (endTime - startTime) + " ns");
   }
