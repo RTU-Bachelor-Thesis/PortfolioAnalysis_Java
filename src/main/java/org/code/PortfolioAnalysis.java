@@ -24,10 +24,10 @@ public class PortfolioAnalysis {
     out.println("\nScaled portfolio: ");
     scaledPortfolio.print();
 
-    Portfolio changeMatrixPortfolio = originalPortfolio.deepCopy();
-    changeMatrixPortfolio.calculateReturnChange();
-    out.println("\nChange in return on assets: ");
-    changeMatrixPortfolio.print();
+    Portfolio returnChangePortfolio = originalPortfolio.deepCopy();
+    returnChangePortfolio.calculateReturnChange();
+    out.println("\nChange in returns on assets: ");
+    returnChangePortfolio.print();
 
     Portfolio additionalPortfolio = new Portfolio(assetsCount, periodsCount);
     additionalPortfolio.fillRandom(-10.0, 10.0);
@@ -48,12 +48,10 @@ public class PortfolioAnalysis {
     out.println("\nWeighted portfolio: ");
     weightedPortfolio.print();
 
-    ArrayList<Integer> indexes = originalPortfolio.findAssetsWithinReturnRange(5, 2, 5);
-    out.println("\nIndexes of assets which profitability in June is greater than 2 and less than 5: ");
-    out.println(indexes);
+    ArrayList<Integer> rangeFilteredAssets = originalPortfolio.findAssetsWithinReturnRange(5, 2, 5);
+    out.println("\nIndexes of assets with returns in June greater than 2 and less than 5: " + rangeFilteredAssets);
 
     double maxYearProfitability = originalPortfolio.findMaxTotalReturn();
-    out.println("\nMaximum year profitability: ");
-    out.printf("%.2f\n", maxYearProfitability);
+    out.printf("\nMaximum year profitability: %.2f\n", maxYearProfitability);
   }
 }
