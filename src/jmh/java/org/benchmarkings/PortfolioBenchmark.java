@@ -16,15 +16,15 @@ public class PortfolioBenchmark {
   @Param({"10", "100", "1000"})
   private int assetsCount;
   private int periodsCount = 12;
-  private Portfolio originalPortfolio, portfolio2, weightMatrix;
+  private Portfolio originalPortfolio, additionalPortfolio, weightMatrix;
 
   @Setup(Level.Iteration)
   public void setupPortfolio() {
     originalPortfolio = new Portfolio(assetsCount, periodsCount);
     originalPortfolio.fillRandom(-10.0, 10.0);
 
-    portfolio2 = new Portfolio(assetsCount, periodsCount);
-    portfolio2.fillRandom(-10.0, 10.0);
+    additionalPortfolio = new Portfolio(assetsCount, periodsCount);
+    additionalPortfolio.fillRandom(-10.0, 10.0);
 
     weightMatrix = Portfolio.createWeightsDistribution(assetsCount, periodsCount);
   }
@@ -55,7 +55,7 @@ public class PortfolioBenchmark {
   @Benchmark
   public void benchmarkCombine() {
     Portfolio originalPortfolioCopy = originalPortfolio.deepCopy();
-    originalPortfolioCopy.combine(portfolio2);
+    originalPortfolioCopy.combine(additionalPortfolio);
   }
 
   @Benchmark

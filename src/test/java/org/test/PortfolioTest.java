@@ -7,14 +7,14 @@ import static java.lang.System.*;
 import org.junit.jupiter.api.*;
 
 class PortfolioTest {
-  Portfolio originalPortfolio, portfolio2, weightMatrix;
+  Portfolio originalPortfolio, additionalPortfolio, weightMatrix;
 
   public PortfolioTest() {
     originalPortfolio = new Portfolio(100, 12);
     originalPortfolio.fillRandom(-10.0, 10.0);
 
-    portfolio2 = new Portfolio(100, 12);
-    portfolio2.fillRandom(-10.0, 10.0);
+    additionalPortfolio = new Portfolio(100, 12);
+    additionalPortfolio.fillRandom(-10.0, 10.0);
 
     weightMatrix = Portfolio.createWeightsDistribution(100, 12);
   }
@@ -58,7 +58,7 @@ class PortfolioTest {
   void combine() {
     long startTime = System.nanoTime();
     Portfolio originalPortfolioCopy = originalPortfolio.deepCopy();
-    originalPortfolioCopy.combine(portfolio2);
+    originalPortfolioCopy.combine(additionalPortfolio);
     long endTime = System.nanoTime();
     out.println("Time of execution of the combine() method: " + (endTime - startTime) + " ns");
   }

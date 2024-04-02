@@ -11,7 +11,7 @@ public class PortfolioAnalysis {
 
     Portfolio originalPortfolio = new Portfolio(assetsCount, periodsCount);
     originalPortfolio.fillRandom(-10.0, 10.0);
-    out.println("\nOriginal profitability portfolio: ");
+    out.println("\nOriginal profitability portfolio (1): ");
     originalPortfolio.print();
 
     Portfolio transposedPortfolio = originalPortfolio.deepCopy();
@@ -29,14 +29,14 @@ public class PortfolioAnalysis {
     out.println("\nChange in return on assets: ");
     changeMatrixPortfolio.print();
 
-    Portfolio portfolio2 = new Portfolio(assetsCount, periodsCount);
-    portfolio2.fillRandom(-10.0, 10.0);
-    out.println("\nProfitability portfolio 2: ");
-    portfolio2.print();
+    Portfolio additionalPortfolio = new Portfolio(assetsCount, periodsCount);
+    additionalPortfolio.fillRandom(-10.0, 10.0);
+    out.println("\nAdditional profitability portfolio (2): ");
+    additionalPortfolio.print();
 
     Portfolio combinedPortfolio = originalPortfolio.deepCopy();
-    combinedPortfolio.combine(portfolio2);
-    out.println("\nTotal profitability of 2 portfolios: ");
+    combinedPortfolio.combine(additionalPortfolio);
+    out.println("\nTotal profitability of portfolios: ");
     combinedPortfolio.print();
 
     Portfolio weightMatrix = Portfolio.createWeightsDistribution(assetsCount, periodsCount);
